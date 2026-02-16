@@ -168,7 +168,8 @@ html {
     margin: 0;
     padding: 0;
     overflow: auto;
-    background: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(black, white);
+    background-image: url("READHA.jpg");
 }
 
 body {
@@ -4515,7 +4516,9 @@ html {
     -webkit-animation: glow 2s ease-in-out infinite alternate;
     -moz-animation: glow 2s ease-in-out infinite alternate;
     animation: glow 2s ease-in-out infinite alternate;
-}/* 
+}
+
+/* 
 เครื่องมือหลัก */
 .main-tools {
     margin: 40px 0;
@@ -4669,7 +4672,8 @@ html {
     justify-content: center;
 }
 
-.btn-copy, .btn-test {
+.btn-copy,
+.btn-test {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: #000;
     border: none;
@@ -4681,7 +4685,8 @@ html {
     font-size: 0.9rem;
 }
 
-.btn-copy:hover, .btn-test:hover {
+.btn-copy:hover,
+.btn-test:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 10px rgba(0, 255, 65, 0.4);
 }
@@ -4695,23 +4700,23 @@ html {
     .tools-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .bookmarklet-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .tool-actions {
         flex-direction: column;
     }
-    
+
     .bookmarklet-actions {
         flex-direction: column;
     }
-    
+
     .tool-card {
         padding: 15px;
     }
-    
+
     .bookmarklet-item {
         padding: 15px;
     }
@@ -4758,9 +4763,12 @@ html {
 
 /* Glowing border animation */
 @keyframes glow {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 26px rgba(0, 255, 65, 0.18);
     }
+
     50% {
         box-shadow: 0 0 40px rgba(0, 255, 65, 0.4);
     }
@@ -4768,9 +4776,9 @@ html {
 
 .tool-card:hover {
     animation: glow 2s infinite;
-}/
-* Marketplace Demo Styles */
-.script-card {
+}
+
+/ * Marketplace Demo Styles */ .script-card {
     background: rgba(0, 0, 0, 0.9);
     border: 2px solid var(--primary-color);
     border-radius: 12px;
@@ -4855,15 +4863,45 @@ html {
     font-weight: bold;
 }
 
-.tag.category-security { background: rgba(255, 0, 0, 0.2); color: #ff6b6b; }
-.tag.category-automation { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
-.tag.category-data { background: rgba(0, 123, 255, 0.2); color: #007bff; }
-.tag.category-performance { background: rgba(40, 167, 69, 0.2); color: #28a745; }
-.tag.category-fun { background: rgba(220, 53, 69, 0.2); color: #dc3545; }
+.tag.category-security {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff6b6b;
+}
 
-.tag.difficulty-beginner { background: rgba(40, 167, 69, 0.2); color: #28a745; }
-.tag.difficulty-intermediate { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
-.tag.difficulty-advanced { background: rgba(220, 53, 69, 0.2); color: #dc3545; }
+.tag.category-automation {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.tag.category-data {
+    background: rgba(0, 123, 255, 0.2);
+    color: #007bff;
+}
+
+.tag.category-performance {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.tag.category-fun {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+.tag.difficulty-beginner {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.tag.difficulty-intermediate {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.tag.difficulty-advanced {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
 
 .script-footer {
     display: flex;
@@ -5081,28 +5119,28 @@ html {
     .script-footer {
         flex-direction: column;
     }
-    
+
     .btn-script {
         min-width: auto;
     }
-    
+
     .marketplace-counters {
         flex-wrap: wrap;
         gap: 10px;
     }
-    
+
     .cart-panel,
     .favorites-panel,
     .download-history-panel {
         width: 95%;
         max-height: 80vh;
     }
-    
+
     .script-header {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .script-actions {
         justify-content: center;
     }
@@ -5118,6 +5156,7 @@ html {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -5136,9 +5175,18 @@ html {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}/*
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/*
  Twitter Theme Extension Styles */
 .extension-info {
     margin-top: 15px;
@@ -5213,10 +5261,13 @@ html {
 
 /* Twitter icon animation */
 @keyframes twitter-pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         filter: drop-shadow(0 0 10px #1da1f2);
     }
+
     50% {
         transform: scale(1.1);
         filter: drop-shadow(0 0 20px #1da1f2);
@@ -5233,7 +5284,7 @@ html {
         font-size: 0.8rem;
         padding: 8px;
     }
-    
+
     .extension-info p {
         margin: 3px 0;
     }
