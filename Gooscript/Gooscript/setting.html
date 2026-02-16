@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>การตั้งค่า Shark Tools</title>
+  <style>
+    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:#0f0f0f; color:#eee; padding:18px; }
+    h2 { color:#4dd0e1; }
+    .row { display:flex; gap:8px; align-items:center; margin:8px 0; }
+    label { min-width:120px; color:#ccc; }
+    input[type=text], textarea { background:#111; color:#eee; border:1px solid #333; padding:8px; border-radius:6px; width:100%; }
+    textarea { min-height:90px; }
+    .controls { margin-top:12px; display:flex; gap:8px; }
+    button { background:#2196f3; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
+    button.secondary { background:#555; }
+    .preview { width:36px; height:36px; object-fit:cover; border-radius:6px; border:1px solid #333; background:#1a1a1a }
+    .items { margin-top:14px; border-top:1px solid #222; padding-top:12px; }
+    .item { display:flex; gap:8px; align-items:center; padding:6px 4px; border-bottom:1px dashed #222; }
+    .note { color:#9e9e9e; font-size:13px; margin-top:6px }
+  </style>
+</head>
+<body>
+  <h2>การตั้งค่า Shark Tools</h2>
+  <p class="note">เพิ่มปุ่มเพื่อให้ปรากฏในเมนูลอยหลัก สามารถใส่ไฟล์สคริปต์หรือพิมพ์โค้ดโดยตรง, อัปโหลดไอคอน หรือใช้ path ของ builtin</p>
+
+  <div class="row">
+    <label for="name">ชื่อปุ่ม</label>
+    <input id="name" type="text" placeholder="เช่น Run My Script" />
+  </div>
+
+  <div class="row">
+    <label for="scriptFile">ไฟล์สคริปต์</label>
+    <input id="scriptFile" type="file" accept=".js,application/javascript" />
+  </div>
+
+  <div class="row">
+    <label for="scriptText">หรือ วางสคริปต์</label>
+    <textarea id="scriptText" placeholder="วาง JavaScript ที่ต้องการให้รัน"></textarea>
+  </div>
+
+  <div class="row">
+    <label for="scriptBuiltinPath">หรือ builtin script URL</label>
+    <input id="scriptBuiltinPath" type="text" placeholder="เช่น image/myscript.js หรือ https://..." />
+  </div>
+
+  <div class="row">
+    <label for="scopeSelect">ขอบเขตการใช้งาน</label>
+    <select id="scopeSelect">
+      <option value="global">ทั่วทุกหน้า (global)</option>
+      <option value="host">เฉพาะโดเมนที่กำหนด (host)</option>
+    </select>
+    <input id="scopeHost" type="text" placeholder="example.com (เว้นว่างถ้าใช้ host ปัจจุบัน)" />
+  </div>
+
+  <div class="row">
+    <label for="iconFile">ไอคอน (ปกติ)</label>
+    <input id="iconFile" type="file" accept="image/*" />
+    <img id="iconPreview" class="preview" src="" alt="preview" />
+  </div>
+
+  <div class="row">
+    <label for="iconHoverFile">ไอคอน (hover)</label>
+    <input id="iconHoverFile" type="file" accept="image/*" />
+    <img id="iconHoverPreview" class="preview" src="" alt="hover" />
+  </div>
+
+  <div class="row">
+    <label for="iconBuiltinPath">หรือ builtin icon path</label>
+    <input id="iconBuiltinPath" type="text" placeholder="เช่น image/myicon.png" />
+  </div>
+  <div class="row">
+    <label for="iconHoverBuiltinPath">builtin hover path</label>
+    <input id="iconHoverBuiltinPath" type="text" placeholder="เช่น image/myicon_hover.png" />
+  </div>
+
+  <div class="controls">
+    <button id="addBtn">เพิ่มปุ่ม</button>
+    <button id="exportBtn" class="secondary">Export</button>
+    <button id="importBtn" class="secondary">Import</button>
+    <input id="importFile" type="file" accept=".json" style="display:none" />
+  </div>
+
+  <div class="items">
+    <h3 style="margin:0 0 8px 0">รายการปุ่ม</h3>
+    <div id="items"></div>
+  </div>
+
+  <script src="setting.js"></script>
+</body>
+</html>

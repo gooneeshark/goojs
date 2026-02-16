@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test New Bookmarklets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .test-content {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        form {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        input, textarea, select {
+            margin: 5px 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .highlight-text {
+            background: yellow;
+            padding: 2px 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Page for New Bookmarklets</h1>
+    
+    <div class="test-section">
+        <h2>📸 Website Screenshot Tool Test</h2>
+        <p>This section tests the Website Screenshot bookmarklet functionality.</p>
+        <button class="test-button" onclick="testScreenshot()">Test Screenshot Tool</button>
+        <div class="test-content">
+            <p>This is some sample content that should appear in screenshots.</p>
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzAwN2JmZiIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VGVzdCBJbWFnZTwvdGV4dD48L3N2Zz4=" alt="Test Image" style="margin: 10px;">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔊 Text-to-Speech Tool Test</h2>
+        <p>This section tests the Text-to-Speech bookmarklet functionality.</p>
+        <button class="test-button" onclick="testTTS()">Test Text-to-Speech</button>
+        <div class="test-content">
+            <p>Hello! This is a sample text that can be read aloud using the Text-to-Speech bookmarklet. 
+            It includes various punctuation marks, numbers like 123, and different sentence structures.</p>
+            <p class="highlight-text">This highlighted text should also be readable by the TTS system.</p>
+            <blockquote>
+                "The only way to do great work is to love what you do." - Steve Jobs
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🚀 Page Performance Analyzer Test</h2>
+        <p>This section tests the Page Performance Analyzer bookmarklet functionality.</p>
+        <button class="test-button" onclick="testPerformance()">Test Performance Analyzer</button>
+        <div class="test-content">
+            <p>This page includes various elements to test performance analysis:</p>
+            <ul>
+                <li>Multiple images and media</li>
+                <li>Form elements</li>
+                <li>External stylesheets and scripts</li>
+                <li>Various DOM elements</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📱 Social Media Auto-poster Test</h2>
+        <p>This section tests the Social Media Auto-poster bookmarklet functionality.</p>
+        <button class="test-button" onclick="testSocialPoster()">Test Social Media Auto-poster</button>
+        <div class="test-content">
+            <p>Sample content for social media posting:</p>
+            <p>🚀 Just discovered an amazing new tool for web development! Check out these awesome bookmarklets that can help boost your productivity. #webdev #javascript #productivity</p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 Test Form for Form Filler</h2>
+        <form>
+            <h3>Sample Form</h3>
+            <label>Name: <input type="text" name="name" placeholder="Enter your name"></label><br>
+            <label>Email: <input type="email" name="email" placeholder="Enter your email"></label><br>
+            <label>Phone: <input type="tel" name="phone" placeholder="Enter your phone"></label><br>
+            <label>Age: <input type="number" name="age" placeholder="Enter your age"></label><br>
+            <label>Country: 
+                <select name="country">
+                    <option value="">Select Country</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="ca">Canada</option>
+                    <option value="th">Thailand</option>
+                </select>
+            </label><br>
+            <label>Comments: <textarea name="comments" placeholder="Enter your comments"></textarea></label><br>
+            <label><input type="checkbox" name="newsletter"> Subscribe to newsletter</label><br>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label><br>
+            <button type="submit" class="test-button">Submit Form</button>
+        </form>
+    </div>
+
+    <script>
+        // Test functions to simulate bookmarklet execution
+        function testScreenshot() {
+            alert('Website Screenshot bookmarklet would be executed here. In the actual implementation, this would open the screenshot tool interface.');
+        }
+
+        function testTTS() {
+            alert('Text-to-Speech bookmarklet would be executed here. In the actual implementation, this would open the TTS control panel.');
+        }
+
+        function testPerformance() {
+            alert('Page Performance Analyzer bookmarklet would be executed here. In the actual implementation, this would analyze page performance metrics.');
+        }
+
+        function testSocialPoster() {
+            alert('Social Media Auto-poster bookmarklet would be executed here. In the actual implementation, this would open the social media posting interface.');
+        }
+
+        // Add some performance test elements
+        for (let i = 0; i < 50; i++) {
+            const div = document.createElement('div');
+            div.textContent = `Performance test element ${i}`;
+            div.style.display = 'none';
+            document.body.appendChild(div);
+        }
+
+        console.log('Test page loaded with', document.querySelectorAll('*').length, 'DOM elements');
+        console.log('Page load time:', performance.now(), 'ms');
+    </script>
+</body>
+</html>

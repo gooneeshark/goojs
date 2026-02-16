@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Goonee Labs — Cross-Site Scripting (XSS)</title>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --panel: #121a2c;
+            --fg: #eaf0ff;
+            --muted: #8ea4ca;
+            --card: #0f1628;
+            --line: #1f2b47;
+            --accent: #4ad395;
+            --warn: #ffcc66;
+            --bad: #ff6b6b;
+            --code: #0a1122;
+            --chip: #1b2440;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Sans Thai", "Noto Sans", Arial, sans-serif;
+            background: linear-gradient(180deg, #080d18, var(--bg));
+            color: var(--fg)
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--panel);
+            border-bottom: 1px solid var(--line);
+            padding: 12px 0;
+            z-index: 10
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.4rem
+        }
+
+        .sub {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        main .wrap {
+            padding: 24px 0
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: 1.3fr .7fr
+        }
+
+        @media(max-width:900px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(74, 211, 149, 0.06), transparent 25%), var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 16px
+        }
+
+        .title {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .title h2 {
+            margin: 0;
+            font-size: 1.1rem
+        }
+
+        label {
+            display: block;
+            margin: 8px 0;
+            font-weight: 600
+        }
+
+        input,
+        button,
+        textarea {
+            background: #0d1426;
+            border: 1px solid #243154;
+            border-radius: 8px;
+            color: var(--fg);
+            padding: 8px;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .btn {
+            background: linear-gradient(180deg, #2a7fff, #1663e6);
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            padding: 8px 12px;
+            cursor: pointer
+        }
+
+        .log {
+            height: 150px;
+            overflow: auto;
+            padding: 12px;
+            background: var(--code);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            font-family: ui-monospace, monospace;
+            line-height: 1.4
+        }
+
+        .vuln-area {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 100px;
+            margin-top: 20px
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <h1>Goonee Labs — Cross-Site Scripting (XSS)</h1>
+            <div class="sub">เรียนรู้การโจมตีและการป้องกัน XSS ในด่านจำลอง</div>
+        </div>
+    </header>
+    <main>
+        <div class="wrap">
+            <div class="grid">
+                <section class="card">
+                    <div class="title">
+                        <h2>XSS Playground</h2>
+                    </div>
+                    <p>ลองป้อนชื่อของคุณลงในช่องด้านล่าง (ลองใส่ &lt;script&gt;alert(1)&lt;/script&gt; ดูสิ!)</p>
+                    <label>Input</label>
+                    <div style="display:flex; gap:8px;">
+                        <input type="text" id="xssInput" placeholder="ใส่ชื่อหรือ Payload ที่นี่" />
+                        <button id="btnSubmit" class="btn" style="width:120px">Submit</button>
+                    </div>
+
+                    <div class="vuln-area" id="outputArea">
+                        ยินดีต้อนรับ, [ระบุชื่อด้านบน]
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <label>Security Level</label>
+                        <select id="securityLevel"
+                            style="background:#0d1426; color:#fff; border:1px solid #243154; padding:8px; border-radius:8px; width:100%">
+                            <option value="low">Low (ไม่มีการคัดกรอง)</option>
+                            <option value="medium">Medium (คัดกรองเบื้องต้น)</option>
+                            <option value="high">High (ปลอดภัย)</option>
+                        </select>
+                    </div>
+                </section>
+                <aside class="card">
+                    <div class="title">
+                        <h2>Challenges</h2>
+                    </div>
+                    <ul style="margin:0; padding-left:20px; line-height:1.6">
+                        <li><strong>Level 1:</strong> แสดง alert box ในหน้าจอ</li>
+                        <li><strong>Level 2:</strong> Bypass filter (ใช้ <code>&lt;img src=x onerror=...&gt;</code>)
+                        </li>
+                        <li><strong>Level 3:</strong> พยายามเจาะระดับ High (ถ้าทำได้!)</li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <script>
+        const xssInput = document.getElementById('xssInput');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const outputArea = document.getElementById('outputArea');
+        const securityLevel = document.getElementById('securityLevel');
+
+        function updateOutput() {
+            let input = xssInput.value || '[ระบุชื่อด้านบน]';
+            const level = securityLevel.value;
+
+            outputArea.style.border = "none";
+            outputArea.style.background = "#fff";
+
+            if (level === 'medium') {
+                // Basic filter: remove <script> tags but vulnerable to others like <img>
+                input = input.replace(/<script>/gi, '');
+                outputArea.style.border = "2px solid var(--warn)";
+            } else if (level === 'high') {
+                // Secure: HTML Entity Encoding
+                const div = document.createElement('div');
+                div.textContent = input;
+                input = div.innerHTML;
+                outputArea.style.border = "2px solid var(--accent)";
+            } else {
+                outputArea.style.border = "2px solid var(--bad)";
+            }
+
+            outputArea.innerHTML = `ยินดีต้อนรับ, ${input}`;
+
+            // Log to console for better learning
+            console.log(`[XSS Lab] Level: ${level}, Input: ${xssInput.value}`);
+        }
+
+        btnSubmit.onclick = updateOutput;
+        xssInput.onkeypress = (e) => { if (e.key === 'Enter') updateOutput(); };
+    </script>
+    <script src="../lab-nav.js"></script>
+</body>
+
+</html>

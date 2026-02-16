@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Eruda DevTools",
+  "version": "1.0",
+  "description": "Eruda DevTools for Chrome with Thai language support",
+  
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Toggle Eruda"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["scripting", "activeTab", "debugger"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [{
+    "resources": ["eruda.css", "eruda.js", "types.d.ts", "plugins/*"],
+    "matches": ["<all_urls>"]
+  }]
+}

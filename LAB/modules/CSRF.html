@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Goonee Labs — Cross-Site Request Forgery (CSRF)</title>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --panel: #121a2c;
+            --fg: #eaf0ff;
+            --muted: #8ea4ca;
+            --card: #0f1628;
+            --line: #1f2b47;
+            --accent: #4ad395;
+            --warn: #ffcc66;
+            --bad: #ff6b6b;
+            --code: #0a1122;
+            --chip: #1b2440;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Sans Thai", "Noto Sans", Arial, sans-serif;
+            background: linear-gradient(180deg, #080d18, var(--bg));
+            color: var(--fg)
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--panel);
+            border-bottom: 1px solid var(--line);
+            padding: 12px 0;
+            z-index: 10
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.4rem
+        }
+
+        .sub {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        main .wrap {
+            padding: 24px 0
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(74, 211, 149, 0.06), transparent 25%), var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px
+        }
+
+        .btn {
+            background: linear-gradient(180deg, #2a7fff, #1663e6);
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 100%
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center
+        }
+
+        .status.success {
+            background: rgba(74, 211, 149, 0.2);
+            color: var(--accent)
+        }
+
+        .status.error {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--bad)
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <h1>Goonee Labs — CSRF Protection</h1>
+            <div class="sub">เจาะลึกการโจมตีข้ามไซต์ และวิธีป้องกันด้วย CSRF Token</div>
+        </div>
+    </header>
+    <main>
+        <div class="wrap">
+            <div class="card">
+                <h3>เป้าหมาย: โอนเงินจำลอง</h3>
+                <p>จำลองว่าคุณล็อคอินอยู่ในแอปธนาคาร และมีแฮกเกอร์พยายามหลอกให้คุณรันสคริปต์เพื่อโอนเงิน</p>
+
+                <div style="background:#1b2440; padding:15px; border-radius:8px; margin:15px 0">
+                    <label>โอนเงินไปยังบัญชี:</label>
+                    <input type="text" value="123-456-789 (Hacker)" readonly
+                        style="background:transparent; border:none; color:#fff; width:100%; font-size:1.1rem" />
+                    <label>จำนวนเงิน:</label>
+                    <input type="text" value="฿10,000" readonly
+                        style="background:transparent; border:none; color:#fff; width:100%; font-size:1.1rem" />
+                </div>
+
+                <div style="margin-bottom:15px">
+                    <label>CSRF Protection:</label>
+                    <input type="checkbox" id="csrfEnabled" /> Enable Anti-CSRF Token
+                </div>
+
+                <button id="btnTransfer" class="btn">ยืนยันการโอนเงิน (Transfer Now)</button>
+                <div id="transferStatus"></div>
+            </div>
+
+            <div class="card" style="background:rgba(255,204,102,0.1); border-color:var(--warn)">
+                <h3 style="color:var(--warn)">คำอธิบาย (Lab Logic)</h3>
+                <p>หากติ๊กเลือก <b>Enable Anti-CSRF Token</b> ระบบจะตรวจสอบว่ามี Token
+                    ที่ถูกต้องส่งมาพร้อมกับคำขอหรือไม่ หากไม่มี ระบบจะปฏิเสธการโอนเงิน
+                    (จำลองการโจมตีจากเว็บไซต์อื่นที่ไม่มี Token)</p>
+            </div>
+        </div>
+    </main>
+    <script>
+        const btnTransfer = document.getElementById('btnTransfer');
+        const csrfEnabled = document.getElementById('csrfEnabled');
+        const transferStatus = document.getElementById('transferStatus');
+
+        btnTransfer.onclick = () => {
+            const isProtected = csrfEnabled.checked;
+
+            // Simulate request processing
+            transferStatus.innerHTML = '<span style="color:#aaa">กำลังประมวลผลคำขอ (Sending Request)...</span>';
+            transferStatus.className = 'status';
+            btnTransfer.disabled = true;
+
+            setTimeout(() => {
+                btnTransfer.disabled = false;
+                if (isProtected) {
+                    transferStatus.innerHTML = '✅ การโอนเงินสำเร็จ (Token Validated)';
+                    transferStatus.className = 'status success';
+                } else {
+                    transferStatus.innerHTML = '⚠️ คำเตือน: ตรวจพบช่องโหว่! การโอนเงินถูกประมวลผลโดยไม่มีการตรวจสอบ Token (Vulnerable to CSRF)';
+                    transferStatus.className = 'status error';
+                }
+            }, 1200);
+        };
+    </script>
+    <script src="../lab-nav.js"></script>
+</body>
+
+</html>
