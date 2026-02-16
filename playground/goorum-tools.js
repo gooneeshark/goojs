@@ -467,7 +467,7 @@ document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.shiftKey && e.key === 'G') {
         e.preventDefault();
         document.body.style.cursor = 'crosshair';
-        document.title = '🦈 GOORUM GOD MODE ACTIVATED 🦈';
+        document.title = '🦈 GOOHUB GOD MODE ACTIVATED 🦈';
         showToast('⚡ GOD MODE ACTIVATED! ⚡');
 
         // Add matrix effect
@@ -477,10 +477,10 @@ document.addEventListener('keydown', (e) => {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    showToast('🦈 ยินดีต้อนรับสู่ Goorum - Advanced Web Security Toolkit!');
+    showToast('🦈 ยินดีต้อนรับสู่ goohub - Advanced Web Security Toolkit!');
 
     // Add some hacker flair to console
-    console.log('%c🦈 GOORUM LOADED! 🦈', 'color: #00ff41; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px #00ff41;');
+    console.log('%c🦈 goohub LOADED! 🦈', 'color: #00ff41; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px #00ff41;');
     console.log('%cAdvanced Web Security Toolkit', 'color: #00e5ff; font-size: 16px;');
     console.log('%cPress Ctrl+Shift+G for God Mode!', 'color: #ff6b6b; font-size: 14px;');
 });

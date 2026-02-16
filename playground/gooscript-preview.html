@@ -194,6 +194,7 @@
   </script>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="terminal.css">
 </head>
 
 <body>
@@ -644,7 +645,7 @@
         </div>
 
         <section class="cta">
-            <a href="https://goonee.netlify.app/" class="btn" target="_blank" rel="noopener">
+            <a href="https://goo-nee.netlify.app/" class="btn" target="_blank" rel="noopener">
                 🌐 Try on a Test Website
             </a>
             <a href="goometaguide.html" class="btn secondary">
@@ -830,6 +831,43 @@
     <script src="meta-manager.js"></script>
     <script src="analytics-tracker.js"></script>
     <script src="analytics-dashboard.js"></script>
+    <!-- Floating Terminal Panel -->
+    <div id="floating-terminal">
+        <div class="terminal-icon">🦈</div>
+        <div class="terminal-header" id="terminal-header">
+            <span class="terminal-title">🦈 Shark Terminal</span>
+            <div class="terminal-controls">
+                <button class="terminal-btn" id="term-min" title="Minimize">_</button>
+                <button class="terminal-btn" id="term-close" title="Close">&times;</button>
+            </div>
+        </div>
+        <div class="terminal-content">
+            <!-- Translator Tool -->
+            <div class="terminal-tool">
+                <h4>🌐 Quick Translator</h4>
+                <div class="translator-ui">
+                    <textarea id="trans-input" class="translator-input" rows="2"
+                        placeholder="Type to translate..."></textarea>
+                    <button class="btn" id="trans-btn" style="width: 100%; margin-top: 5px;">Translate</button>
+                    <div id="trans-output" class="translator-output" style="margin-top: 5px;">Translation result...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Site Scan -->
+            <div class="terminal-tool">
+                <h4>🛡️ Tactical Scan</h4>
+                <button class="btn secondary" id="scan-btn" style="width: 100%;">Initialize Scan</button>
+                <div class="scan-progress-container" style="margin-top: 10px;">
+                    <div class="scan-bar" id="scan-bar"></div>
+                </div>
+                <span id="scan-status" class="scan-status">Waiting...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="terminal.js"></script>
 </body>
+
 
 </html>

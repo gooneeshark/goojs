@@ -7180,7 +7180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, 30000);
 });
-// Utility functions for Goorum tools
+// Utility functions for goohub tools
 function showToast(message) {
     const toast = document.createElement('div');
     toast.className = 'toast show';
@@ -7297,8 +7297,8 @@ function loadEruda() {
 
                 // Add some hacker flair
                 setTimeout(() => {
-                    console.log('%c🦈 GOORUM HACKER CONSOLE LOADED! 🦈', 'color: #00ff41; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #00ff41;');
-                    console.log('%cWelcome to Goorum - Advanced Web Security Toolkit', 'color: #00e5ff; font-size: 14px;');
+                    console.log('%c🦈 goohub HACKER CONSOLE LOADED! 🦈', 'color: #00ff41; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #00ff41;');
+                    console.log('%cWelcome to goohub - Advanced Web Security Toolkit', 'color: #00e5ff; font-size: 14px;');
                 }, 1000);
             }
         } catch (e) {
@@ -7428,7 +7428,7 @@ document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.shiftKey && e.key === 'G') {
         e.preventDefault();
         document.body.style.cursor = 'crosshair';
-        document.title = '🦈 GOORUM GOD MODE ACTIVATED 🦈';
+        document.title = '🦈 goohub GOD MODE ACTIVATED 🦈';
         showToast('⚡ GOD MODE ACTIVATED! ⚡');
 
         // Add matrix effect
@@ -7486,12 +7486,12 @@ function createMatrixEffect() {
     }, 10000);
 }
 
-// Initialize Goorum
+// Initialize goohub
 document.addEventListener('DOMContentLoaded', () => {
-    showToast('🦈 ยินดีต้อนรับสู่ Goorum - Advanced Web Security Toolkit!');
+    showToast('🦈 ยินดีต้อนรับสู่ goohub - Advanced Web Security Toolkit!');
 
     // Add some hacker flair to console
-    console.log('%c🦈 GOORUM LOADED! 🦈', 'color: #00ff41; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px #00ff41;');
+    console.log('%c🦈 goohub LOADED! 🦈', 'color: #00ff41; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px #00ff41;');
     console.log('%cAdvanced Web Security Toolkit', 'color: #00e5ff; font-size: 16px;');
     console.log('%cPress Ctrl+Shift+G for God Mode!', 'color: #ff6b6b; font-size: 14px;');
 });
