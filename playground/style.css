@@ -4171,7 +4171,8 @@ Fix for elements showing as text - Hide by default */
     opacity: 0.7;
 }
 
-/ * Theme preview colors */ .matrix-preview {
+/* Theme preview colors */
+.matrix-preview {
     background: #00ff41;
 }
 
@@ -4778,7 +4779,8 @@ html {
     animation: glow 2s infinite;
 }
 
-/ * Marketplace Demo Styles */ .script-card {
+/* Marketplace Demo Styles */
+.script-card {
     background: rgba(0, 0, 0, 0.9);
     border: 2px solid var(--primary-color);
     border-radius: 12px;

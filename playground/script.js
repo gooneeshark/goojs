@@ -6875,8 +6875,8 @@ if (window.themeManager) {
     if (savedTheme && savedTheme !== window.themeManager.currentTheme) {
         window.themeManager.setTheme(savedTheme);
     }
-}// To
-ast notification system
+}
+// Toast notification system
 function showToast(message) {
     const existingToast = document.querySelector('.toast');
     if (existingToast) {
